@@ -1,4 +1,4 @@
-import 'package:campo_minado/models/explosao_exception.dart';
+import 'explosao_exception.dart';
 
 class Campo {
   final int linha;
@@ -10,11 +10,14 @@ class Campo {
   bool _minado = false;
   bool _explodido = false;
 
-  Campo({required this.linha, required this.coluna});
+  Campo({
+    required this.linha,
+    required this.coluna,
+  });
 
   void adicionarVizinho(Campo vizinho) {
     final deltaLinha = (linha - vizinho.linha).abs();
-    final deltaColuna = (linha - vizinho.coluna).abs();
+    final deltaColuna = (coluna - vizinho.coluna).abs();
 
     if (deltaLinha == 0 && deltaColuna == 0) {
       return;

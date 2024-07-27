@@ -1,6 +1,5 @@
 import 'dart:math';
-
-import 'package:campo_minado/models/campo.dart';
+import 'campo.dart';
 
 class Tabuleiro {
   final int linhas;
@@ -25,7 +24,7 @@ class Tabuleiro {
     _sortearMinas();
   }
 
-  void relevarBombas() {
+  void revelarBombas() {
     for (var c in _campos) {
       c.revelarBomba();
     }

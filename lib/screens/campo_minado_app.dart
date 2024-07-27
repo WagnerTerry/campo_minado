@@ -36,7 +36,7 @@ class _CampoMinadoAppState extends State<CampoMinadoApp> {
         }
       } on ExplosaoException {
         _venceu = false;
-        _tabuleiro!.relevarBombas();
+        _tabuleiro!.revelarBombas();
       }
     });
   }
@@ -60,8 +60,11 @@ class _CampoMinadoAppState extends State<CampoMinadoApp> {
       double tamanhoCampo = largura / qtdeColunas;
       int qtdeLinhas = (altura / tamanhoCampo).floor();
 
-      _tabuleiro =
-          Tabuleiro(linhas: qtdeLinhas, colunas: qtdeColunas, qtdeBombas: 1);
+      _tabuleiro = Tabuleiro(
+        linhas: qtdeLinhas,
+        colunas: qtdeColunas,
+        qtdeBombas: 50,
+      );
     }
     return _tabuleiro!;
   }
@@ -69,23 +72,28 @@ class _CampoMinadoAppState extends State<CampoMinadoApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
-          appBar: ResultadoWidget(
-            venceu: _venceu,
-            onReiniciar: _reiniciar,
+        appBar: ResultadoWidget(
+          venceu: _venceu,
+          onReiniciar: _reiniciar,
+        ),
+        body: Container(
+          color: Colors.grey,
+          child: LayoutBuilder(
+            builder: (ctx, constraints) {
+              return TabuleiroWidget(
+                tabuleiro: _getTabuleiro(
+                  constraints.maxWidth,
+                  constraints.maxHeight,
+                ),
+                onAbrir: _abrir,
+                onAlternarMarcacao: _alternarMarcacao,
+              );
+            },
           ),
-          body: Container(
-            color: Colors.grey,
-            child: LayoutBuilder(
-              builder: (ctx, constraints) {
-                return TabuleiroWidget(
-                    tabuleiro: _getTabuleiro(
-                        constraints.maxWidth, constraints.maxHeight),
-                    onAbrir: _abrir,
-                    onAlternarMarcacao: _alternarMarcacao);
-              },
-            ),
-          )),
+        ),
+      ),
     );
   }
 }

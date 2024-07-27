@@ -4,8 +4,11 @@ class ResultadoWidget extends StatelessWidget implements PreferredSizeWidget {
   final bool? venceu;
   final Function()? onReiniciar;
 
-  const ResultadoWidget(
-      {required this.venceu, required this.onReiniciar, super.key});
+  const ResultadoWidget({
+    required this.venceu,
+    required this.onReiniciar,
+    super.key,
+  });
 
   Color _getCor() {
     if (venceu == null) {

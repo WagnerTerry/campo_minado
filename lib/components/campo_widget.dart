@@ -1,16 +1,17 @@
-import 'package:campo_minado/models/campo.dart';
 import 'package:flutter/material.dart';
+import '../models/campo.dart';
 
 class CampoWidget extends StatelessWidget {
   final Campo campo;
   final void Function(Campo) onAbrir;
   final void Function(Campo) onAlternarMarcacao;
 
-  const CampoWidget(
-      {required this.campo,
-      required this.onAbrir,
-      required this.onAlternarMarcacao,
-      super.key});
+  const CampoWidget({
+    required this.campo,
+    required this.onAbrir,
+    required this.onAlternarMarcacao,
+    super.key,
+  });
 
   Widget _getImage() {
     int qtdeMinas = campo.qtdeMinasNaVizinhaca;
